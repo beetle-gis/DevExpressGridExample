@@ -19,9 +19,21 @@ export class AppComponent implements OnInit {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
+  filterValue: Array<any>;
+  customOperations: Array<any>;
+
+  popupPosition: any;
+
+  saleAmountHeaderFilter: any;
+
   constructor(private authService: AuthService,
               private screen: ScreenService,
-              public appInfo: AppInfoService) { }
+              public appInfo: AppInfoService) {
+    this.popupPosition = {
+      of: window, at: 'top', my: 'top', offset: { y: 10 },
+    };
+
+  }
 
   ngOnInit() {
     this.dataGrid.instance.showColumnChooser();
