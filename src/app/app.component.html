@@ -28,39 +28,47 @@
               [selection]="{ mode: 'multiple' }"
               [editing]="{ mode: 'cell', allowUpdating: true }"
               (onRowClick)="onRowClick($event)">
+
   <dxo-column-chooser
     [enabled]="true"
     mode="select">
   </dxo-column-chooser>
 
   <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+
   <dxo-filter-builder
     [customOperations]="customOperations"
     [allowHierarchicalFields]="true"
   >
   </dxo-filter-builder>
+
   <dxo-filter-builder-popup [position]="popupPosition">
   </dxo-filter-builder-popup>
+
   <dxo-filter-row [visible]="true"></dxo-filter-row>
   <dxo-header-filter [visible]="true"></dxo-header-filter>
 
 
 
-  <dxi-column dataField="status.name" caption="Trip Status" [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="status.name" caption="Trip Status" [allowEditing]="false" [fixed]="true"></dxi-column>
   <dxi-column caption="Group 1">
     <dxi-column dataField="trip_id" caption="Trip Number" [allowEditing]="false"></dxi-column>
     <dxi-column dataField="is_confirmed" caption="Is Confirmed" cellTemplate="isConfirmedTemplate"></dxi-column>
   </dxi-column>
+
   <dxi-column caption="Group 2">
-    <dxi-column dataField="is_rescue" caption="Rescue Trip" cellTemplate="isRescueTemplate"></dxi-column>
+    <dxi-column dataField="is_rescue" caption="Rescue Trip" cellTemplate="isRescueTemplate">
+      <ng-template></ng-template>
+    </dxi-column>
     <dxi-column dataField="bidding_start_timestamp" caption="Bidding Started At" dataType="date"></dxi-column>
     <dxi-column dataField="acceptance_by_transportation_provider_status.name" caption="Acceptance"></dxi-column>
   </dxi-column>
+
   <dxi-column caption="Group 3">
     <dxi-column dataField="bidding_status.name" caption="Bidding"></dxi-column>
     <dxi-column dataField="phone" caption="Phone"></dxi-column>
-    <dxi-column dataField="is_covid_eligible_transport_required" caption="COVID Transport" cellTemplate="isCovidTemplate"></dxi-column>
-    <dxi-column dataField="billing.cost" caption="Cost" cellTemplate="billingCostTemplate"></dxi-column>
+    <dxi-column [width]="250" dataField="is_covid_eligible_transport_required" caption="COVID Transport" cellTemplate="isCovidTemplate"></dxi-column>
+    <dxi-column [width]="250" dataField="billing.cost" caption="Cost" cellTemplate="billingCostTemplate"></dxi-column>
   </dxi-column>
 
   <dxo-summary>

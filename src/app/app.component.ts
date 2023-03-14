@@ -39,8 +39,6 @@ export class AppComponent implements OnInit {
     this.dataGrid.instance.showColumnChooser();
   }
 
-
-
   onRowClick(e: any) {
     let keys = e.component.getSelectedRowKeys();
     let index = keys.indexOf(e.key);
@@ -53,5 +51,4 @@ export class AppComponent implements OnInit {
 
     e.component.selectRows(keys);
   }
-
 }
