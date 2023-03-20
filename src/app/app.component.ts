@@ -19,6 +19,10 @@ export class AppComponent implements OnInit {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
+  isConfirmedHeaderFilterData: any;
+
+  isRescueHeaderFilterData: any;
+
   filterValue: Array<any>;
   customOperations: Array<any>;
 
@@ -33,7 +37,24 @@ export class AppComponent implements OnInit {
       of: window, at: 'top', my: 'top', offset: { y: 10 },
     };
 
+    this.isConfirmedHeaderFilterData = [{
+      text: "Not Confirmed",
+      value: 0
+    }, {
+      text: "Confirmed",
+      value: 1
+    }];
+
+    this.isRescueHeaderFilterData = [{
+      text: "Yes",
+      value: 1
+    }, {
+      text: "No",
+      value: 0
+    }]
   }
+
+
 
   ngOnInit() {
     this.dataGrid.instance.showColumnChooser();
@@ -50,5 +71,9 @@ export class AppComponent implements OnInit {
     }
 
     e.component.selectRows(keys);
+  }
+
+  public customizeText(value: any) {
+    return value ? 'Is Confirmed' : 'Not Confirmed';
   }
 }
