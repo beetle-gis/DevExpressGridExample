@@ -30,6 +30,7 @@
                 [editing]="{ mode: 'cell', allowUpdating: true }"
                 [height]="600"
                 (onRowClick)="onRowClick($event)">
+
     <dxo-paging [pageSize]="10"> </dxo-paging>
     <dxo-pager
       [visible]="true"
@@ -58,7 +59,7 @@
     <dxo-filter-builder-popup [position]="popupPosition">
     </dxo-filter-builder-popup>
 
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-filter-row [visible]="true" [applyFilter]="currentFilter"></dxo-filter-row>
     <dxo-header-filter [visible]="true"></dxo-header-filter>
 
 

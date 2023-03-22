@@ -21,6 +21,10 @@ export class AppComponent implements OnInit {
 
   isConfirmedHeaderFilterData: any;
 
+  applyFilterTypes: any;
+
+  currentFilter: any;
+
   isRescueHeaderFilterData: any;
 
   filterValue: Array<any>;
@@ -33,6 +37,13 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService,
               private screen: ScreenService,
               public appInfo: AppInfoService) {
+    this.applyFilterTypes = [{
+      key: 'onClick',
+      name: 'On Button Click',
+    }];
+
+    this.currentFilter = this.applyFilterTypes[0].key;
+
     this.popupPosition = {
       of: window, at: 'top', my: 'top', offset: { y: 10 },
     };
