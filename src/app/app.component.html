@@ -30,6 +30,16 @@
                 [editing]="{ mode: 'cell', allowUpdating: true }"
                 [height]="600"
                 (onRowClick)="onRowClick($event)">
+    <dxo-paging [pageSize]="10"> </dxo-paging>
+    <dxo-pager
+      [visible]="true"
+      [allowedPageSizes]="[5, 10, 'all']"
+      displayMode="full"
+      [showPageSizeSelector]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
+    >
+    </dxo-pager>
     <dxo-sorting mode="multiple"></dxo-sorting>
 
     <dxo-column-chooser
@@ -55,14 +65,14 @@
 
     <dxi-column dataField="status.name" caption="Trip Status" [allowEditing]="false" [fixed]="true"></dxi-column>
     <dxi-column caption="Group 1">
-      <dxi-column dataField="trip_id" caption="Trip Number" [allowEditing]="false"></dxi-column>
-      <dxi-column  dataField="is_confirmed" caption="Is Confirmed" cellTemplate="isConfirmedTemplate">
+      <dxi-column dataField="trip_id" caption="Trip Number"></dxi-column>
+      <dxi-column  dataField="is_confirmed" caption="Is Confirmed" [allowEditing]="false" cellTemplate="isConfirmedTemplate">
         <dxo-header-filter [dataSource]="isConfirmedHeaderFilterData"></dxo-header-filter>
       </dxi-column>
     </dxi-column>
 
     <dxi-column caption="Group 2">
-      <dxi-column dataField="is_rescue" caption="Rescue Trip" cellTemplate="isRescueTemplate">
+      <dxi-column dataField="is_rescue" caption="Rescue Trip" [allowEditing]="false" cellTemplate="isRescueTemplate">
         <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>
       </dxi-column>
       <dxi-column [width]="200" dataField="bidding_start_timestamp" caption="Bidding Started At" dataType="date"></dxi-column>
@@ -72,7 +82,7 @@
     <dxi-column caption="Group 3">
       <dxi-column dataField="bidding_status.name" caption="Bidding"></dxi-column>
       <dxi-column dataField="phone" caption="Phone"></dxi-column>
-      <dxi-column [width]="250" dataField="is_covid_eligible_transport_required" caption="COVID Transport" cellTemplate="isCovidTemplate">
+      <dxi-column [width]="250" [allowEditing]="false" dataField="is_covid_eligible_transport_required" caption="COVID Transport" cellTemplate="isCovidTemplate">
         <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>
       </dxi-column>
       <dxi-column [width]="250" dataField="billing.cost" caption="Cost" cellTemplate="billingCostTemplate"></dxi-column>
