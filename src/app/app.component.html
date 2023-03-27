@@ -68,13 +68,13 @@
     <dxi-column caption="Group 1">
       <dxi-column dataField="trip_id" caption="Trip Number"></dxi-column>
       <dxi-column  dataField="is_confirmed" caption="Is Confirmed" [allowEditing]="false" cellTemplate="isConfirmedTemplate">
-        <dxo-header-filter [dataSource]="isConfirmedHeaderFilterData"></dxo-header-filter>
+<!--        <dxo-header-filter [dataSource]="isConfirmedHeaderFilterData"></dxo-header-filter>-->
       </dxi-column>
     </dxi-column>
 
     <dxi-column caption="Group 2">
       <dxi-column dataField="is_rescue" caption="Rescue Trip" [allowEditing]="false" cellTemplate="isRescueTemplate">
-        <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>
+<!--        <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>-->
       </dxi-column>
       <dxi-column [width]="200" dataField="bidding_start_timestamp" caption="Bidding Started At" dataType="date"></dxi-column>
       <dxi-column dataField="acceptance_by_transportation_provider_status.name" caption="Acceptance"></dxi-column>
@@ -84,7 +84,7 @@
       <dxi-column dataField="bidding_status.name" caption="Bidding"></dxi-column>
       <dxi-column dataField="phone" caption="Phone"></dxi-column>
       <dxi-column [width]="250" [allowEditing]="false" dataField="is_covid_eligible_transport_required" caption="COVID Transport" cellTemplate="isCovidTemplate">
-        <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>
+<!--        <dxo-header-filter [dataSource]="isRescueHeaderFilterData"></dxo-header-filter>-->
       </dxi-column>
       <dxi-column [width]="250" dataField="billing.cost" caption="Cost" cellTemplate="billingCostTemplate"></dxi-column>
     </dxi-column>
@@ -95,16 +95,17 @@
     </dxo-summary>
 
     <div *dxTemplate="let isConfirm of 'isConfirmedTemplate'">
-      <span>{{ isConfirm.data.is_confirmed ? 'Confirmed' : 'Not Confirmed' }}</span>
+      <span>{{ isConfirm.data.is_confirmed }}</span>
     </div>
 
     <div *dxTemplate="let isRescue of 'isRescueTemplate'">
-      <span *ngIf="isRescue.data.is_rescue" class="text-bold green">Yes</span>
-      <span *ngIf="!isRescue.data.is_rescue" class="text-bold red">No</span>
+      <span *ngIf="isRescue.data.is_rescue === 'Yes'" class="text-bold green">Yes</span>
+      <span *ngIf="isRescue.data.is_rescue === 'No'" class="text-bold red">No</span>
     </div>
 
     <div *dxTemplate="let isCovid of 'isCovidTemplate'">
-      <span>{{ isCovid.data.is_covid_eligible_transport_required ? 'Yes' : 'No' }}</span>
+      <span *ngIf="isCovid.data.is_covid_eligible_transport_required === 'Yes'" class="text-bold green">Yes</span>
+      <span *ngIf="isCovid.data.is_covid_eligible_transport_required === 'No'" class="text-bold red">No</span>
     </div>
 
     <div *dxTemplate="let cost of 'billingCostTemplate'">

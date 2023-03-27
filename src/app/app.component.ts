@@ -37,6 +37,15 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService,
               private screen: ScreenService,
               public appInfo: AppInfoService) {
+
+    this.dataSource.forEach(trip => {
+      // @ts-ignore
+      trip.is_confirmed = trip.is_confirmed ? 'Confirmed' : 'Not Confirmed';
+      // @ts-ignore
+      trip.is_rescue = trip.is_rescue ? 'Yes' : 'No';
+      // @ts-ignore
+      trip.is_covid_eligible_transport_required = trip.is_covid_eligible_transport_required ? 'Yes' : 'No';
+    });
     this.applyFilterTypes = [{
       key: 'onClick',
       name: 'On Button Click',
@@ -48,27 +57,35 @@ export class AppComponent implements OnInit {
       of: window, at: 'top', my: 'top', offset: { y: 10 },
     };
 
-    this.isConfirmedHeaderFilterData = [{
-      text: "Not Confirmed",
-      value: 0
-    }, {
-      text: "Confirmed",
-      value: 1
-    }];
-
-    this.isRescueHeaderFilterData = [{
-      text: "Yes",
-      value: 1
-    }, {
-      text: "No",
-      value: 0
-    }]
+    // this.isConfirmedHeaderFilterData = [{
+    //   text: "Not Confirmed",
+    //   value: 0
+    // }, {
+    //   text: "Confirmed",
+    //   value: 1
+    // }];
+    //
+    // this.isRescueHeaderFilterData = [{
+    //   text: "Yes",
+    //   value: 1
+    // }, {
+    //   text: "No",
+    //   value: 0
+    // }]
   }
 
 
 
   ngOnInit() {
     this.dataGrid.instance.showColumnChooser();
+    this.dataSource.forEach(trip => {
+      // @ts-ignore
+      trip.is_confirmed = trip.is_confirmed ? 'Confirmed' : 'Not Confirmed';
+      // @ts-ignore
+      trip.is_rescue = trip.is_rescue ? 'Yes' : 'No';
+      // @ts-ignore
+      trip.is_covid_eligible_transport_required = trip.is_covid_eligible_transport_required ? 'Yes' : 'No';
+    });
   }
 
   onRowClick(e: any) {
@@ -82,9 +99,5 @@ export class AppComponent implements OnInit {
     }
 
     e.component.selectRows(keys);
-  }
-
-  public customizeText(value: any) {
-    return value ? 'Is Confirmed' : 'Not Confirmed';
   }
 }
